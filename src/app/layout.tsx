@@ -49,7 +49,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: "Balkrishna Infotech",
   url: "https://balkrishnainfotech.com",
-  logo: "https://balkrishnainfotech.com/logo.svg",
+  logo: "https://harsh1110.github.io/balkrishna-infotech/logo.png",
   description:
     "Product engineering company building digital products, SaaS platforms, commerce experiences and growth systems.",
   sameAs: [],

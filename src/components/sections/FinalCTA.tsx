@@ -7,7 +7,7 @@ export function FinalCTA() {
         <Reveal>
           <div className="relative overflow-hidden rounded-[1.25rem] border border-[var(--divider)] px-6 py-14 text-center md:px-12 md:py-20">
             <div
-              className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,color-mix(in_srgb,#1E7EC3_35%,transparent),transparent_55%),linear-gradient(180deg,#151B20,#0B0D10)]"
+              className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,color-mix(in_srgb,#18A8E4_24%,transparent),transparent_55%),linear-gradient(180deg,#ffffff,#eef5fa)]"
               aria-hidden
             />
             <p className="eyebrow mb-4">Ready when you are</p>

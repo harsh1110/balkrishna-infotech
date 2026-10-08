@@ -6,8 +6,8 @@ type LogoProps = {
 };
 
 const sizes = {
-  nav: { box: 32, className: "h-7 w-7 md:h-8 md:w-8" },
-  footer: { box: 40, className: "h-9 w-9 md:h-10 md:w-10" },
+  nav: { box: 34, className: "h-[30px] w-[30px] md:h-8 md:w-8" },
+  footer: { box: 42, className: "h-9 w-9 md:h-10 md:w-10" },
 };
 
 export function Logo({ size = "nav", showWordmark = true }: LogoProps) {
@@ -16,11 +16,11 @@ export function Logo({ size = "nav", showWordmark = true }: LogoProps) {
   return (
     <span className="inline-flex items-center gap-3">
       <Image
-        src="/logo.svg"
-        alt=""
+        src="/logo.png"
+        alt="Balkrishna Infotech logo"
         width={dims.box}
         height={dims.box}
-        className={dims.className}
+        className={`${dims.className} object-contain`}
         priority={size === "nav"}
       />
       {showWordmark ? (

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://balkrishnainfotech.com/sitemap.xml
+Sitemap: https://harsh1110.github.io/balkrishna-infotech/sitemap.xml

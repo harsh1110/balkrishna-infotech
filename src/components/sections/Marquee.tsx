@@ -16,7 +16,7 @@ export function Marquee() {
 
   return (
     <section
-      className="border-y border-[var(--divider)] bg-[color-mix(in_srgb,var(--surface)_65%,transparent)] py-4 overflow-hidden"
+      className="border-y border-[var(--divider)] bg-white py-4 overflow-hidden"
       aria-label="Capabilities overview"
     >
       <div className="marquee-track" aria-hidden>

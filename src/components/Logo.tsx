@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 type LogoProps = {
   size?: "nav" | "footer";
   showWordmark?: boolean;
@@ -12,16 +10,17 @@ const sizes = {
 
 export function Logo({ size = "nav", showWordmark = true }: LogoProps) {
   const dims = sizes[size];
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
   return (
     <span className="inline-flex items-center gap-3">
-      <Image
-        src="/logo.png"
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={`${basePath}/logo.png`}
         alt="Balkrishna Infotech logo"
         width={dims.box}
         height={dims.box}
         className={`${dims.className} object-contain`}
-        priority={size === "nav"}
       />
       {showWordmark ? (
         <span className="font-[family-name:var(--font-sora)] text-[0.95rem] font-semibold tracking-tight text-[var(--text)] md:text-base">

@@ -13,18 +13,19 @@ export function Logo({ size = "nav", showWordmark = true }: LogoProps) {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
   return (
-    <span className="inline-flex items-center gap-3">
+    <span className="inline-flex min-w-0 items-center gap-2 sm:gap-3">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={`${basePath}/logo.png`}
         alt="Balkrishna Infotech logo"
         width={dims.box}
         height={dims.box}
-        className={`${dims.className} object-contain`}
+        className={`${dims.className} shrink-0 object-contain`}
       />
       {showWordmark ? (
-        <span className="font-[family-name:var(--font-sora)] text-[0.95rem] font-semibold tracking-tight text-[var(--text)] md:text-base">
-          Balkrishna Infotech
+        <span className="truncate font-[family-name:var(--font-sora)] text-[0.88rem] font-semibold tracking-tight text-[var(--text)] sm:text-[0.95rem] md:text-base">
+          <span className="sm:hidden">Balkrishna</span>
+          <span className="hidden sm:inline">Balkrishna Infotech</span>
         </span>
       ) : null}
     </span>

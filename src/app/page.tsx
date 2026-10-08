@@ -13,12 +13,14 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { Insights } from "@/components/sections/Insights";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Footer } from "@/components/sections/Footer";
+import { AmbientBackground } from "@/components/ui/AmbientBackground";
 
 export default function Home() {
   return (
     <>
+      <AmbientBackground />
       <Header />
-      <main>
+      <main className="relative">
         <Hero />
         <Marquee />
         <WhoWeAre />

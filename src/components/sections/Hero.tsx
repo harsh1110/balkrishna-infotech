@@ -60,7 +60,7 @@ export function Hero() {
         <div className="max-w-2xl">
           <motion.p
             className="eyebrow mb-4 sm:mb-5"
-            initial={reduce ? false : { opacity: 0, y: 22 }}
+            initial={reduce ? false : { opacity: 1, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0, ease: easeOut }}
           >
@@ -69,7 +69,7 @@ export function Hero() {
           <motion.h1
             id="hero-heading"
             className="display text-[2rem] leading-[1.05] sm:text-[2.6rem] md:text-6xl lg:text-[4.35rem]"
-            initial={reduce ? false : { opacity: 0, y: 22 }}
+            initial={reduce ? false : { opacity: 1, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08, ease: easeOut }}
           >
@@ -78,7 +78,7 @@ export function Hero() {
           </motion.h1>
           <motion.p
             className="mt-5 max-w-xl text-[0.95rem] text-[var(--muted)] sm:mt-6 sm:text-base md:text-lg"
-            initial={reduce ? false : { opacity: 0, y: 22 }}
+            initial={reduce ? false : { opacity: 1, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.16, ease: easeOut }}
           >
@@ -87,7 +87,7 @@ export function Hero() {
           </motion.p>
           <motion.div
             className="mt-7 flex w-full flex-col gap-3 sm:mt-8 sm:w-auto sm:flex-row sm:flex-wrap"
-            initial={reduce ? false : { opacity: 0, y: 22 }}
+            initial={reduce ? false : { opacity: 1, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.24, ease: easeOut }}
           >
@@ -103,9 +103,9 @@ export function Hero() {
         <motion.div
           className="relative mx-auto w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[520px]"
           style={reduce ? undefined : { x: orbitX, y: orbitY }}
-          initial={reduce ? false : { opacity: 0, scale: 0.94 }}
+          initial={reduce ? false : { opacity: 1, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, delay: 0.2, ease: easeOut }}
           aria-hidden
         >
           <div className="relative aspect-square">

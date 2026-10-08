@@ -1,0 +1,233 @@
+@import "tailwindcss";
+
+:root {
+  --brand-charcoal: #242021;
+  --brand-graphite: #57585a;
+  --brand-blue: #1e7ec3;
+  --brand-cyan: #18a8e4;
+  --bg: #0b0d10;
+  --surface: #151b20;
+  --text: #f7fafc;
+  --muted: #a7b0b7;
+  --divider: #2a4455;
+  --gradient: linear-gradient(135deg, #1e7ec3 0%, #18a8e4 100%);
+  --max-content: 1280px;
+  --radius: 16px;
+}
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-cyan: var(--brand-cyan);
+  --color-brand-charcoal: var(--brand-charcoal);
+  --color-brand-graphite: var(--brand-graphite);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-divider: var(--divider);
+  --font-display: var(--font-sora);
+  --font-sans: var(--font-inter);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--brand-blue) 45%, transparent);
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(100% - 2rem, var(--max-content));
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: min(100% - 3rem, var(--max-content));
+  }
+}
+
+.section {
+  padding-block: 5rem;
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-block: 7.5rem;
+  }
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-cyan);
+}
+
+.display {
+  font-family: var(--font-sora), system-ui, sans-serif;
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.gradient-text {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.85rem 1.4rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: border-color 140ms ease, background 140ms ease, transform 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--brand-cyan);
+  outline-offset: 3px;
+}
+
+.btn-primary {
+  background: var(--gradient);
+  color: #fff;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--brand-cyan) 35%, transparent),
+    0 12px 36px color-mix(in srgb, var(--brand-blue) 28%, transparent);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--brand-cyan) 50%, transparent),
+    0 16px 40px color-mix(in srgb, var(--brand-blue) 40%, transparent);
+}
+
+.btn-secondary {
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  border: 1px solid var(--brand-blue);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  border-color: var(--brand-cyan);
+  background: color-mix(in srgb, var(--brand-blue) 12%, var(--surface));
+}
+
+.surface-card {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--surface) 92%, #1e7ec3) 0%,
+    var(--surface) 100%
+  );
+  border: 1px solid color-mix(in srgb, var(--divider) 80%, transparent);
+  border-radius: var(--radius);
+}
+
+.surface-card:hover {
+  border-color: color-mix(in srgb, var(--brand-cyan) 55%, var(--divider));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--brand-blue) 18%, transparent),
+    0 18px 40px rgba(0, 0, 0, 0.28);
+}
+
+.grid-lines {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--divider) 35%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--divider) 35%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 75%);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 2.5rem;
+  animation: marquee 32s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.hero-orbit {
+  animation: orbit 48s linear infinite;
+}
+
+.hero-glow {
+  animation: pulse-glow 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .hero-orbit,
+  .hero-glow {
+    animation: none;
+  }
+}

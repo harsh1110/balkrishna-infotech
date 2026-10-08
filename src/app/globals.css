@@ -298,3 +298,62 @@ img {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: inline-flex;
+  height: 40px;
+  width: 40px;
+  translate: 0 -50%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--divider);
+  background: color-mix(in srgb, white 88%, transparent);
+  color: var(--text);
+  font-size: 1.4rem;
+  line-height: 1;
+  backdrop-filter: blur(8px);
+  transition: border-color 140ms ease, transform 140ms ease;
+}
+
+.carousel-nav:hover {
+  border-color: var(--brand-cyan);
+  transform: translateY(-50%) scale(1.04);
+}
+
+.carousel-nav:focus-visible {
+  outline: 2px solid var(--brand-cyan);
+  outline-offset: 2px;
+}
+
+.tech-marquee {
+  animation: tech-scroll 28s linear infinite;
+}
+
+.tech-marquee-reverse {
+  animation-direction: reverse;
+  animation-duration: 34s;
+}
+
+@keyframes tech-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.333%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-marquee,
+  .tech-marquee-reverse {
+    animation: none;
+  }
+}
+
+.insights-rail {
+  width: 100%;
+}

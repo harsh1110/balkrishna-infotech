@@ -1,3 +1,6 @@
+"use client";
+
+import { Carousel } from "@/components/ui/Carousel";
 import { Reveal } from "@/components/ui/Reveal";
 
 const cases = [
@@ -29,50 +32,57 @@ export function Work() {
     <section id="work" className="section pt-0" aria-labelledby="work-heading">
       <div className="container">
         <Reveal>
-          <p className="eyebrow mb-4">Selected work</p>
-          <h2 id="work-heading" className="display max-w-3xl text-3xl md:text-5xl">
-            Digital products that make an impact.
-          </h2>
-          <p className="mt-5 max-w-2xl text-[var(--muted)] md:text-lg">
-            Flagship engagements that show challenge, solution, stack and measurable outcome —
-            proof before contact.
-          </p>
+          <div className="mb-8 flex flex-col gap-4 md:mb-10 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="eyebrow mb-4">Selected work</p>
+              <h2
+                id="work-heading"
+                className="display max-w-3xl text-[1.75rem] sm:text-3xl md:text-5xl"
+              >
+                Digital products that make an impact.
+              </h2>
+            </div>
+            <p className="max-w-md text-[var(--muted)] md:text-right">
+              Swipe or use arrows to explore flagship outcomes.
+            </p>
+          </div>
         </Reveal>
 
-        <div className="mt-10 grid gap-4">
-          {cases.map((item, i) => (
-            <Reveal key={item.title} delay={i * 0.05}>
-              <article className="surface-card grid gap-6 p-6 md:grid-cols-[1.2fr_1fr] md:p-8">
+        <Carousel
+          items={cases}
+          ariaLabel="Selected work case studies"
+          autoPlayMs={6500}
+          renderItem={(item, i) => (
+            <article className="grid min-h-[320px] gap-6 p-6 sm:p-8 md:grid-cols-[1.2fr_0.8fr] md:min-h-[360px] md:p-10">
+              <div>
+                <p className="eyebrow">Case study 0{i + 1}</p>
+                <h3 className="mt-3 font-[family-name:var(--font-sora)] text-xl font-semibold sm:text-2xl md:text-3xl">
+                  {item.title}
+                </h3>
+                <p className="mt-5 text-sm text-[var(--muted)] md:text-base">
+                  <span className="text-[var(--text)]">Challenge: </span>
+                  {item.challenge}
+                </p>
+                <p className="mt-2 text-sm text-[var(--muted)] md:text-base">
+                  <span className="text-[var(--text)]">Solution: </span>
+                  {item.solution}
+                </p>
+              </div>
+              <div className="flex flex-col justify-between gap-6 border-t border-[var(--divider)] pt-5 md:border-t-0 md:border-l md:pl-8 md:pt-0">
                 <div>
-                  <p className="eyebrow">Case study 0{i + 1}</p>
-                  <h3 className="mt-3 font-[family-name:var(--font-sora)] text-xl font-semibold md:text-2xl">
-                    {item.title}
-                  </h3>
-                  <p className="mt-4 text-sm text-[var(--muted)] md:text-base">
-                    <span className="text-[var(--text)]">Challenge: </span>
-                    {item.challenge}
-                  </p>
-                  <p className="mt-2 text-sm text-[var(--muted)] md:text-base">
-                    <span className="text-[var(--text)]">Solution: </span>
-                    {item.solution}
+                  <p className="text-xs uppercase tracking-[0.12em] text-[var(--muted)]">Stack</p>
+                  <p className="mt-2 text-sm text-[var(--text)] md:text-base">{item.stack}</p>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-[0.12em] text-[var(--muted)]">Outcome</p>
+                  <p className="mt-2 font-[family-name:var(--font-sora)] text-xl font-semibold gradient-text md:text-2xl">
+                    {item.outcome}
                   </p>
                 </div>
-                <div className="flex flex-col justify-between gap-4 border-t border-[var(--divider)] pt-4 md:border-t-0 md:border-l md:pt-0 md:pl-8">
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.12em] text-[var(--muted)]">Stack</p>
-                    <p className="mt-2 text-sm text-[var(--text)]">{item.stack}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.12em] text-[var(--muted)]">Outcome</p>
-                    <p className="mt-2 font-[family-name:var(--font-sora)] text-lg font-semibold gradient-text">
-                      {item.outcome}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
+              </div>
+            </article>
+          )}
+        />
       </div>
     </section>
   );

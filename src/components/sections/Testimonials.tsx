@@ -1,3 +1,6 @@
+"use client";
+
+import { Carousel } from "@/components/ui/Carousel";
 import { Reveal } from "@/components/ui/Reveal";
 
 const stories = [
@@ -27,23 +30,31 @@ export function Testimonials() {
       <div className="container">
         <Reveal>
           <p className="eyebrow mb-4">Client stories</p>
-          <h2 id="stories-heading" className="display max-w-3xl text-3xl md:text-5xl">
+          <h2
+            id="stories-heading"
+            className="display max-w-3xl text-[1.75rem] sm:text-3xl md:text-5xl"
+          >
             Trusted by ambitious teams.
           </h2>
         </Reveal>
 
-        <div className="mt-10 grid gap-4 lg:grid-cols-3">
-          {stories.map((story, i) => (
-            <Reveal key={story.name} delay={i * 0.05}>
-              <figure className="surface-card flex h-full flex-col justify-between p-6 md:p-7">
-                <blockquote className="text-[var(--muted)]">&ldquo;{story.quote}&rdquo;</blockquote>
-                <figcaption className="mt-6 border-t border-[var(--divider)] pt-4">
+        <div className="mt-8 md:mt-10">
+          <Carousel
+            items={stories}
+            ariaLabel="Client testimonials"
+            autoPlayMs={7000}
+            renderItem={(story) => (
+              <figure className="mx-auto flex min-h-[260px] max-w-3xl flex-col justify-center px-6 py-10 text-center sm:px-10 md:min-h-[300px] md:py-14">
+                <blockquote className="font-[family-name:var(--font-sora)] text-xl leading-relaxed text-[var(--text)] sm:text-2xl md:text-3xl">
+                  &ldquo;{story.quote}&rdquo;
+                </blockquote>
+                <figcaption className="mt-8">
                   <p className="font-semibold text-[var(--text)]">{story.name}</p>
-                  <p className="text-sm text-[var(--muted)]">{story.role}</p>
+                  <p className="mt-1 text-sm text-[var(--muted)]">{story.role}</p>
                 </figcaption>
               </figure>
-            </Reveal>
-          ))}
+            )}
+          />
         </div>
       </div>
     </section>

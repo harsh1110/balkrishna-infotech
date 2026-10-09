@@ -22,10 +22,27 @@ export function FinalCTA() {
               <a href="#project-builder" className="btn btn-primary">
                 Start a Project
               </a>
-              <a href="#work" className="btn btn-secondary">
-                Explore Work
+              <a href="mailto:info@balkrishnainfotech.com" className="btn btn-secondary">
+                Email Us
               </a>
             </div>
+            <p className="mt-5 text-sm text-[var(--muted)]">
+              <a
+                href="mailto:info@balkrishnainfotech.com"
+                className="transition-colors hover:text-[var(--brand-cyan)]"
+              >
+                info@balkrishnainfotech.com
+              </a>
+              <span className="mx-2 text-[var(--divider)]" aria-hidden>
+                ·
+              </span>
+              <a
+                href="tel:+917041493634"
+                className="transition-colors hover:text-[var(--brand-cyan)]"
+              >
+                +91 70414 93634
+              </a>
+            </p>
           </div>
         </Reveal>
       </div>

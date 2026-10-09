@@ -21,7 +21,8 @@ const columns = [
   {
     title: "Contact",
     links: [
-      { label: "hello@balkrishnainfotech.com", href: "mailto:hello@balkrishnainfotech.com" },
+      { label: "info@balkrishnainfotech.com", href: "mailto:info@balkrishnainfotech.com" },
+      { label: "+91 70414 93634", href: "tel:+917041493634" },
       { label: "Let's Talk", href: "#project-builder" },
     ],
   },

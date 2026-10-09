@@ -52,6 +52,17 @@ const organizationJsonLd = {
   logo: "https://harsh1110.github.io/balkrishna-infotech/brand/logo-main.png",
   description:
     "Product engineering company building digital products, SaaS platforms, commerce experiences and growth systems.",
+  email: "info@balkrishnainfotech.com",
+  telephone: "+917041493634",
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      email: "info@balkrishnainfotech.com",
+      telephone: "+917041493634",
+      contactType: "customer service",
+      availableLanguage: ["English", "Hindi"],
+    },
+  ],
   sameAs: [],
 };
 

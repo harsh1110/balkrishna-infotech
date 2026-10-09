@@ -1,0 +1,6 @@
+:HL["/balkrishna-infotech/_next/static/chunks/0omnnjmr9dce2.css","style"]
+:HL["/balkrishna-infotech/_next/static/media/6bd983bd58a87a3d-s.p.1hey5yyym6mz_.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/balkrishna-infotech/_next/static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/balkrishna-infotech/brand/logo-lockup.png","image"]
+1:[["children",{"s":"__PAGE__","h":160}]]
+0:{"b":"KMwolwJGbqXWcfA4Jgmat","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

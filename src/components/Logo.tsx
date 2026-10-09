@@ -52,16 +52,16 @@ export function Logo({ variant = "auto", size = "nav" }: LogoProps) {
         src={`${root}/brand/logo-main.png`}
         alt="Balkrishna Infotech"
         height={32}
-        className="sm:hidden"
-        style={{ height: 32, width: "auto", display: "block" }}
+        className="logo-mobile"
+        style={{ height: 32, width: "auto" }}
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={`${root}/brand/logo-lockup.png`}
         alt="Balkrishna Infotech"
         height={34}
-        className="hidden sm:block"
-        style={{ height: 34, width: "auto", maxWidth: 220, display: "block" }}
+        className="logo-desktop"
+        style={{ height: 34, width: "auto", maxWidth: 220 }}
       />
     </span>
   );

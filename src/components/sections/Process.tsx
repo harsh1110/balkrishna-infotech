@@ -49,13 +49,13 @@ export function Process() {
             />
           </div>
 
-          <ol className="relative grid gap-0 border-l border-[var(--divider)] pl-5 sm:pl-0 sm:border-l-0">
-            <div className="hidden sm:absolute sm:inset-x-0 sm:top-5 sm:block sm:h-px sm:bg-[var(--divider)]" aria-hidden />
-            <div className="grid gap-6 sm:grid-cols-3 lg:grid-cols-6 sm:gap-3">
+          <ol className="relative">
+            <div className="hidden lg:absolute lg:inset-x-0 lg:top-5 lg:block lg:h-px lg:bg-[var(--divider)]" aria-hidden />
+            <div className="flex gap-3 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] sm:grid sm:grid-cols-3 sm:overflow-visible sm:pb-0 lg:grid-cols-6 sm:gap-3 [&::-webkit-scrollbar]:hidden">
               {steps.map((step, i) => {
                 const selected = i === active;
                 return (
-                  <li key={step.n} className="relative">
+                  <li key={step.n} className="relative min-w-[7.25rem] shrink-0 sm:min-w-0">
                     <button
                       type="button"
                       className="group w-full text-left"
@@ -63,7 +63,7 @@ export function Process() {
                       aria-current={selected ? "step" : undefined}
                     >
                       <span
-                        className={`relative z-[1] mb-3 flex h-10 w-10 items-center justify-center rounded-full border text-sm font-semibold transition ${
+                        className={`relative z-[1] mb-2 flex h-9 w-9 items-center justify-center rounded-full border text-sm font-semibold transition sm:mb-3 sm:h-10 sm:w-10 ${
                           selected
                             ? "border-transparent bg-[linear-gradient(135deg,#1E7EC3,#18A8E4)] text-white shadow-[0_8px_20px_rgba(30,126,195,0.3)]"
                             : "border-[var(--divider)] bg-white text-[var(--muted)] group-hover:border-[var(--brand-blue)]"
@@ -72,7 +72,7 @@ export function Process() {
                         {step.n}
                       </span>
                       <span
-                        className={`block font-[family-name:var(--font-sora)] text-base font-semibold sm:text-sm lg:text-base ${
+                        className={`block font-[family-name:var(--font-sora)] text-sm font-semibold sm:text-sm lg:text-base ${
                           selected ? "text-[var(--text)]" : "text-[var(--muted)]"
                         }`}
                       >
@@ -85,7 +85,7 @@ export function Process() {
             </div>
           </ol>
 
-          <div className="mt-8 overflow-hidden rounded-[1.25rem] border border-[var(--divider)] bg-white/80 p-6 sm:p-8">
+          <div className="mt-6 overflow-hidden rounded-[1.25rem] border border-[var(--divider)] bg-white/80 p-5 sm:mt-8 sm:p-8">
             <AnimatePresence mode="wait">
               <motion.div
                 key={steps[active].n}

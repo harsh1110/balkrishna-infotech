@@ -53,7 +53,7 @@ export function Work() {
           ariaLabel="Selected work case studies"
           autoPlayMs={6500}
           renderItem={(item, i) => (
-            <article className="grid min-h-[320px] gap-6 p-6 sm:p-8 md:grid-cols-[1.2fr_0.8fr] md:min-h-[360px] md:p-10">
+            <article className="grid min-h-[280px] gap-5 p-5 pb-14 sm:gap-6 sm:p-8 md:grid-cols-[1.2fr_0.8fr] md:min-h-[360px] md:p-10 md:pb-10">
               <div>
                 <p className="eyebrow">Case study 0{i + 1}</p>
                 <h3 className="mt-3 font-[family-name:var(--font-sora)] text-xl font-semibold sm:text-2xl md:text-3xl">

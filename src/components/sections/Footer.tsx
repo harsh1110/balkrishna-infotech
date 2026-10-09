@@ -32,7 +32,7 @@ export function Footer() {
     <footer className="border-t border-[var(--divider)] pb-10 pt-14">
       <div className="container grid gap-10 md:grid-cols-[1.2fr_1fr_1fr_1fr]">
         <div>
-          <Logo size="footer" />
+          <Logo variant="lockup" size="footer" />
           <p className="mt-4 max-w-sm text-sm text-[var(--muted)]">
             Digital products, SaaS platforms and growth experiences engineered for ambitious
             businesses.

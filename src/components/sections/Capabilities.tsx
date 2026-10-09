@@ -94,7 +94,7 @@ export function Capabilities() {
           </div>
 
           <div
-            className="relative min-h-[220px] overflow-hidden rounded-[1.5rem] border border-[var(--divider)] bg-[radial-gradient(circle_at_top_right,color-mix(in_srgb,#18A8E4_18%,transparent),transparent_45%),linear-gradient(180deg,#ffffff,#f3f8fc)] p-6 sm:min-h-[260px] sm:p-8 md:p-10"
+            className="relative min-h-[200px] overflow-hidden rounded-[1.25rem] border border-[var(--divider)] bg-[radial-gradient(circle_at_top_right,color-mix(in_srgb,#18A8E4_18%,transparent),transparent_45%),linear-gradient(180deg,#ffffff,#f3f8fc)] p-5 sm:min-h-[260px] sm:rounded-[1.5rem] sm:p-8 md:p-10"
             role="tabpanel"
             aria-live="polite"
           >

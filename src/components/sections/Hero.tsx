@@ -127,6 +127,10 @@ export function Hero() {
                     key={label}
                     className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full border border-[var(--divider)] bg-white/95 px-2.5 py-1.5 text-[0.62rem] font-medium tracking-wide text-[var(--text)] shadow-[0_8px_24px_rgba(36,32,33,0.08)] backdrop-blur md:text-xs"
                     style={{ left: `${x}%`, top: `${y}%` }}
+                    animate={reduce ? undefined : { rotate: -360 }}
+                    transition={
+                      reduce ? undefined : { duration: 48, repeat: Infinity, ease: "linear" }
+                    }
                     whileHover={reduce ? undefined : { scale: 1.06 }}
                   >
                     {label}

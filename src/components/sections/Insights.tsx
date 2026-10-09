@@ -114,7 +114,7 @@ export function Insights() {
         </Reveal>
 
         <div
-          className="insights-stage relative mx-auto max-w-5xl overflow-x-clip"
+          className="insights-stage relative mx-auto max-w-5xl"
           aria-roledescription="carousel"
           aria-label="Insights carousel"
         >

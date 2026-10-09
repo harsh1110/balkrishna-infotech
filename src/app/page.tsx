@@ -17,7 +17,7 @@ import { AmbientBackground } from "@/components/ui/AmbientBackground";
 
 export default function Home() {
   return (
-    <div className="page-shell">
+    <>
       <AmbientBackground />
       <Header />
       <main className="relative">
@@ -36,6 +36,6 @@ export default function Home() {
         <FinalCTA />
       </main>
       <Footer />
-    </div>
+    </>
   );
 }

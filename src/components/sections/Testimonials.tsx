@@ -44,7 +44,7 @@ export function Testimonials() {
             ariaLabel="Client testimonials"
             autoPlayMs={7000}
             renderItem={(story) => (
-              <figure className="mx-auto flex min-h-[240px] max-w-3xl flex-col justify-center px-5 py-8 pb-14 text-center sm:px-10 sm:py-10 md:min-h-[300px] md:py-14 md:pb-14">
+              <figure className="mx-auto flex max-w-3xl flex-col justify-center px-5 py-8 pb-14 text-center sm:min-h-[240px] sm:px-10 sm:py-10 md:min-h-[300px] md:py-14 md:pb-14">
                 <blockquote className="font-[family-name:var(--font-sora)] text-xl leading-relaxed text-[var(--text)] sm:text-2xl md:text-3xl">
                   &ldquo;{story.quote}&rdquo;
                 </blockquote>

@@ -1,5 +1,12 @@
 "use client";
 
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  type PanInfo,
+} from "framer-motion";
+import { useCallback, useEffect, useState } from "react";
 import { Reveal } from "@/components/ui/Reveal";
 
 const posts = [
@@ -7,30 +14,66 @@ const posts = [
     title: "How product studios ship SaaS that survives year two",
     topic: "SaaS development",
     read: "6 min read",
+    blurb: "Architecture habits that keep product velocity from collapsing after launch.",
   },
   {
     title: "eCommerce engineering choices that protect conversion under load",
     topic: "eCommerce",
     read: "5 min read",
+    blurb: "Checkout, catalog, and caching decisions that hold when traffic spikes.",
   },
   {
     title: "Practical AI automation for ops teams without brittle agents",
     topic: "AI automation",
     read: "7 min read",
+    blurb: "Workflow automation patterns that stay maintainable in production.",
   },
   {
     title: "Cloud release habits that keep Core Web Vitals green",
     topic: "Cloud & DevOps",
     read: "5 min read",
+    blurb: "Release and observability practices that protect real-user performance.",
   },
 ];
 
+const ease = [0.22, 1, 0.36, 1] as const;
+
+function offsetOf(index: number, active: number, count: number) {
+  let diff = index - active;
+  const half = Math.floor(count / 2);
+  if (diff > half) diff -= count;
+  if (diff < -half) diff += count;
+  return diff;
+}
+
 export function Insights() {
+  const reduce = useReducedMotion();
+  const [active, setActive] = useState(0);
+  const count = posts.length;
+
+  const go = useCallback(
+    (next: number) => {
+      setActive((prev) => (next + count) % count);
+    },
+    [count],
+  );
+
+  useEffect(() => {
+    if (reduce || count < 2) return;
+    const id = window.setInterval(() => go(active + 1), 4800);
+    return () => window.clearInterval(id);
+  }, [active, count, go, reduce]);
+
+  function onDragEnd(_: unknown, info: PanInfo) {
+    if (info.offset.x < -50 || info.velocity.x < -400) go(active + 1);
+    else if (info.offset.x > 50 || info.velocity.x > 400) go(active - 1);
+  }
+
   return (
     <section id="insights" className="section pt-0" aria-labelledby="insights-heading">
       <div className="container">
         <Reveal>
-          <div className="mb-6 flex flex-col gap-3 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
+          <div className="mb-8 flex flex-col gap-3 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="eyebrow mb-4">Insights</p>
               <h2
@@ -40,31 +83,151 @@ export function Insights() {
                 Thinking from the build room.
               </h2>
             </div>
-            <p className="text-sm text-[var(--muted)]">Scroll sideways to browse notes.</p>
+            <p className="max-w-xs text-sm text-[var(--muted)] sm:text-right">
+              Drag, tap a side card, or let the stage advance.
+            </p>
           </div>
         </Reveal>
-      </div>
 
-      <div className="insights-rail pl-[max(1.25rem,calc((100%-var(--max-content))/2+0.75rem))] pr-5">
-        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {posts.map((post, i) => (
-            <article
-              key={post.title}
-              className="group relative w-[min(84vw,340px)] shrink-0 snap-start overflow-hidden rounded-[1.25rem] border border-[var(--divider)] bg-[linear-gradient(160deg,#ffffff_0%,#eef5fa_100%)] p-6 transition hover:-translate-y-1 hover:border-[var(--brand-cyan)] sm:w-[360px]"
+        <div
+          className="insights-stage relative mx-auto max-w-5xl"
+          aria-roledescription="carousel"
+          aria-label="Insights carousel"
+        >
+          <div className="pointer-events-none absolute inset-x-[8%] top-[18%] -z-10 h-[55%] rounded-full bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,#18A8E4_22%,transparent),transparent_70%)] blur-2xl" />
+
+          <div className="relative h-[320px] overflow-visible sm:h-[360px] md:h-[400px]">
+            {posts.map((post, i) => {
+              const offset = offsetOf(i, active, count);
+              const isActive = offset === 0;
+              const abs = Math.abs(offset);
+              if (abs > 2) return null;
+
+              const shift = offset * (abs === 1 ? 1 : 1.55);
+              const scale = isActive ? 1 : abs === 1 ? 0.84 : 0.72;
+              const rotateY = reduce ? 0 : offset * -22;
+              const z = isActive ? 30 : 20 - abs * 8;
+              const opacity = isActive ? 1 : abs === 1 ? 0.7 : 0.38;
+
+              return (
+                <motion.article
+                  key={post.title}
+                  className={`insights-card absolute left-1/2 top-4 h-[calc(100%-2.5rem)] w-[min(88%,26rem)] cursor-pointer rounded-[1.35rem] border border-[var(--divider)] bg-white/95 p-5 shadow-[0_18px_50px_rgba(36,32,33,0.1)] backdrop-blur sm:w-[min(70%,32rem)] sm:p-7 md:w-[min(62%,34rem)] md:p-8 ${
+                    isActive ? "pointer-events-auto" : ""
+                  }`}
+                  style={{
+                    zIndex: z,
+                    transformPerspective: 1400,
+                    transformStyle: "preserve-3d",
+                  }}
+                  animate={{
+                    x: reduce ? "-50%" : `calc(-50% + ${shift * 9.5}rem)`,
+                    scale,
+                    rotateY,
+                    opacity,
+                    y: isActive ? 0 : 12 + abs * 6,
+                  }}
+                  transition={
+                    reduce
+                      ? { duration: 0 }
+                      : { duration: 0.55, ease }
+                  }
+                  drag={isActive && !reduce ? "x" : false}
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.18}
+                  onDragEnd={isActive ? onDragEnd : undefined}
+                  onClick={() => {
+                    if (!isActive) go(i);
+                  }}
+                  aria-hidden={!isActive}
+                  tabIndex={isActive ? 0 : -1}
+                >
+                  <div className="flex h-full flex-col">
+                    <div className="mb-4 flex items-center justify-between gap-3">
+                      <p className="eyebrow">
+                        {String(i + 1).padStart(2, "0")} · {post.topic}
+                      </p>
+                      <span className="text-xs text-[var(--muted)]">{post.read}</span>
+                    </div>
+                    <h3 className="font-[family-name:var(--font-sora)] text-xl font-semibold leading-snug text-[var(--text)] sm:text-2xl md:text-[1.75rem]">
+                      {post.title}
+                    </h3>
+                    <AnimatePresence mode="wait">
+                      {isActive ? (
+                        <motion.p
+                          key={`blurb-${i}`}
+                          className="mt-3 max-w-xl text-sm leading-relaxed text-[var(--muted)] sm:mt-4 sm:text-base"
+                          initial={reduce ? false : { opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={reduce ? undefined : { opacity: 0, y: -8 }}
+                          transition={{ duration: 0.35, ease }}
+                        >
+                          {post.blurb}
+                        </motion.p>
+                      ) : null}
+                    </AnimatePresence>
+                    <div className="mt-auto flex items-center justify-between pt-5">
+                      <span
+                        className="h-1.5 w-16 overflow-hidden rounded-full bg-[var(--divider)]"
+                        aria-hidden
+                      >
+                        {isActive && !reduce ? (
+                          <motion.span
+                            className="block h-full origin-left rounded-full bg-[linear-gradient(90deg,#1E7EC3,#18A8E4)]"
+                            initial={{ scaleX: 0 }}
+                            animate={{ scaleX: 1 }}
+                            transition={{ duration: 4.6, ease: "linear" }}
+                            key={`progress-${active}`}
+                          />
+                        ) : (
+                          <span className="block h-full w-0" />
+                        )}
+                      </span>
+                      <span className="text-sm font-medium text-[var(--brand-blue)]">
+                        Read note →
+                      </span>
+                    </div>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </div>
+
+          <div className="mt-2 flex items-center justify-center gap-3">
+            <button
+              type="button"
+              className="insights-nav"
+              aria-label="Previous insight"
+              onClick={() => go(active - 1)}
             >
-              <div
-                className="mb-8 h-28 rounded-xl bg-[radial-gradient(circle_at_30%_30%,color-mix(in_srgb,#18A8E4_35%,transparent),transparent_60%),linear-gradient(135deg,#1E7EC3,#18A8E4)] opacity-90 transition group-hover:scale-[1.02]"
-                aria-hidden
-              />
-              <p className="eyebrow">
-                {String(i + 1).padStart(2, "0")} · {post.topic}
-              </p>
-              <h3 className="mt-3 font-[family-name:var(--font-sora)] text-lg font-semibold md:text-xl">
-                {post.title}
-              </h3>
-              <p className="mt-4 text-sm text-[var(--muted)]">{post.read}</p>
-            </article>
-          ))}
+              ‹
+            </button>
+            <div className="flex items-center gap-2" role="tablist" aria-label="Insight slides">
+              {posts.map((post, i) => (
+                <button
+                  key={post.title}
+                  type="button"
+                  role="tab"
+                  aria-selected={i === active}
+                  aria-label={`Show insight ${i + 1}`}
+                  className={`h-2 rounded-full transition-all ${
+                    i === active
+                      ? "w-8 bg-[linear-gradient(90deg,#1E7EC3,#18A8E4)]"
+                      : "w-2 bg-[var(--divider)] hover:bg-[var(--brand-blue)]/40"
+                  }`}
+                  onClick={() => setActive(i)}
+                />
+              ))}
+            </div>
+            <button
+              type="button"
+              className="insights-nav"
+              aria-label="Next insight"
+              onClick={() => go(active + 1)}
+            >
+              ›
+            </button>
+          </div>
         </div>
       </div>
     </section>

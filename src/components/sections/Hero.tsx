@@ -248,18 +248,19 @@ export function Hero() {
             </motion.div>
 
             <motion.div
-              className="absolute inset-[34%] flex items-center justify-center rounded-full border border-[color-mix(in_srgb,var(--brand-cyan)_45%,transparent)] bg-[radial-gradient(circle_at_30%_30%,color-mix(in_srgb,#18A8E4_28%,#ffffff),#ffffff_72%)] shadow-[0_0_50px_color-mix(in_srgb,#1E7EC3_22%,transparent)]"
+              className="absolute inset-[30%] flex items-center justify-center overflow-hidden rounded-full border border-[color-mix(in_srgb,var(--brand-cyan)_45%,transparent)] bg-[radial-gradient(circle_at_30%_30%,color-mix(in_srgb,#18A8E4_28%,#ffffff),#ffffff_72%)] shadow-[0_0_50px_color-mix(in_srgb,#1E7EC3_22%,transparent)] sm:inset-[34%]"
               animate={reduce ? undefined : { scale: [1, 1.03, 1] }}
               transition={
                 reduce ? undefined : { duration: 5.5, repeat: Infinity, ease: "easeInOut" }
               }
             >
-              <div className="px-2 text-center sm:px-4">
-                <p className="font-[family-name:var(--font-sora)] text-[0.7rem] font-semibold text-[var(--brand-charcoal)] sm:text-sm md:text-base">
+              <div className="max-w-[92%] px-1.5 text-center sm:max-w-none sm:px-4">
+                <p className="font-[family-name:var(--font-sora)] text-[0.62rem] font-semibold leading-tight text-[var(--brand-charcoal)] sm:text-sm sm:leading-snug md:text-base">
                   Product Studio
                 </p>
-                <p className="mt-0.5 text-[0.58rem] text-[var(--muted)] sm:mt-1 sm:text-[0.7rem] md:text-xs">
-                  Strategy · Design · Engineering
+                <p className="mt-0.5 text-[0.5rem] leading-tight text-[var(--muted)] sm:mt-1 sm:text-[0.7rem] sm:leading-normal md:text-xs">
+                  <span className="sm:hidden">Strategy · Build</span>
+                  <span className="hidden sm:inline">Strategy · Design · Engineering</span>
                 </p>
               </div>
             </motion.div>

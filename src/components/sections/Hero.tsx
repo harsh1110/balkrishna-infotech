@@ -7,9 +7,103 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, type ReactNode } from "react";
 
-const services = [
+type OrbitService = {
+  label: string;
+  short: string;
+  icon: ReactNode;
+};
+
+function IconWeb() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-[18px] w-[18px] sm:h-5 sm:w-5" fill="none" aria-hidden>
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
+      <path
+        d="M3 12h18M12 3c2.5 2.8 3.8 5.8 3.8 9S14.5 18.2 12 21c-2.5-2.8-3.8-5.8-3.8-9S9.5 5.8 12 3Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+    </svg>
+  );
+}
+
+function IconMobile() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-[18px] w-[18px] sm:h-5 sm:w-5" fill="none" aria-hidden>
+      <rect x="7" y="2.5" width="10" height="19" rx="2.2" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M11 18.5h2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function IconSaas() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-[18px] w-[18px] sm:h-5 sm:w-5" fill="none" aria-hidden>
+      <path
+        d="M7 17a4 4 0 1 1 .7-7.9A5 5 0 0 1 17.5 11 3.5 3.5 0 1 1 17 17H7Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function IconCart() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-[18px] w-[18px] sm:h-5 sm:w-5" fill="none" aria-hidden>
+      <path
+        d="M3.5 5h2l1.2 9.2a1.5 1.5 0 0 0 1.5 1.3h8.4a1.5 1.5 0 0 0 1.5-1.2L19.5 8H7"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="10" cy="19" r="1.2" fill="currentColor" />
+      <circle cx="16.5" cy="19" r="1.2" fill="currentColor" />
+    </svg>
+  );
+}
+
+function IconAi() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-[18px] w-[18px] sm:h-5 sm:w-5" fill="none" aria-hidden>
+      <path
+        d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+      <circle cx="12" cy="12" r="3.2" stroke="currentColor" strokeWidth="1.8" />
+    </svg>
+  );
+}
+
+function IconDesign() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-[18px] w-[18px] sm:h-5 sm:w-5" fill="none" aria-hidden>
+      <path
+        d="M4 20l5.2-1.2L19 9a2.1 2.1 0 0 0-3-3L6.2 15.8 4 20Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <path d="M14.2 7.8l2 2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+const orbitServices: OrbitService[] = [
+  { label: "Web Development", short: "Web", icon: <IconWeb /> },
+  { label: "Mobile Apps", short: "Apps", icon: <IconMobile /> },
+  { label: "SaaS", short: "SaaS", icon: <IconSaas /> },
+  { label: "eCommerce", short: "Shop", icon: <IconCart /> },
+  { label: "AI & Automation", short: "AI", icon: <IconAi /> },
+  { label: "UI/UX", short: "UX", icon: <IconDesign /> },
+];
+
+const proofStrip = [
   "Web Development",
   "Mobile Apps",
   "SaaS",
@@ -21,6 +115,7 @@ const services = [
 ];
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
+const orbitDuration = 48;
 
 export function Hero() {
   const reduce = useReducedMotion();
@@ -34,6 +129,7 @@ export function Hero() {
   useEffect(() => {
     if (reduce) return;
     const onMove = (event: PointerEvent) => {
+      if (window.matchMedia("(pointer: coarse)").matches) return;
       mx.set((event.clientX / window.innerWidth) * 2 - 1);
       my.set((event.clientY / window.innerHeight) * 2 - 1);
     };
@@ -56,7 +152,7 @@ export function Hero() {
         aria-hidden
       />
 
-      <div className="container relative grid items-center gap-7 sm:gap-10 lg:min-h-[calc(100svh-8rem)] lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
+      <div className="container relative grid items-center gap-8 sm:gap-10 lg:min-h-[calc(100svh-8rem)] lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
         <div className="max-w-2xl">
           <motion.p
             className="eyebrow mb-3 sm:mb-5"
@@ -101,7 +197,7 @@ export function Hero() {
         </div>
 
         <motion.div
-          className="relative mx-auto hidden w-full max-w-[280px] sm:block sm:max-w-[380px] lg:max-w-[520px]"
+          className="relative mx-auto w-full max-w-[260px] sm:max-w-[380px] lg:max-w-[520px]"
           style={reduce ? undefined : { x: orbitX, y: orbitY }}
           initial={reduce ? false : { opacity: 1, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -111,43 +207,58 @@ export function Hero() {
           <div className="relative aspect-square">
             <div className="absolute inset-[12%] rounded-full border border-[color-mix(in_srgb,var(--divider)_80%,transparent)]" />
             <div className="absolute inset-[24%] rounded-full border border-dashed border-[color-mix(in_srgb,var(--brand-blue)_45%,transparent)]" />
+
             <motion.div
-              className="absolute inset-0"
+              className="hero-orbit absolute inset-0"
               style={{ transformOrigin: "50% 50%" }}
               animate={reduce ? undefined : { rotate: 360 }}
-              transition={reduce ? undefined : { duration: 48, repeat: Infinity, ease: "linear" }}
+              transition={
+                reduce ? undefined : { duration: orbitDuration, repeat: Infinity, ease: "linear" }
+              }
             >
-              {services.slice(0, 6).map((label, i) => {
-                const angle = (i / 6) * Math.PI * 2 - Math.PI / 2;
+              {orbitServices.map((service, i) => {
+                const angle = (i / orbitServices.length) * Math.PI * 2 - Math.PI / 2;
                 const r = 42;
                 const x = 50 + r * Math.cos(angle);
                 const y = 50 + r * Math.sin(angle);
                 return (
-                  <motion.span
-                    key={label}
-                    className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full border border-[var(--divider)] bg-white/95 px-2.5 py-1.5 text-[0.62rem] font-medium tracking-wide text-[var(--text)] shadow-[0_8px_24px_rgba(36,32,33,0.08)] backdrop-blur md:text-xs"
+                  <motion.div
+                    key={service.label}
+                    className="absolute -translate-x-1/2 -translate-y-1/2"
                     style={{ left: `${x}%`, top: `${y}%` }}
                     animate={reduce ? undefined : { rotate: -360 }}
                     transition={
-                      reduce ? undefined : { duration: 48, repeat: Infinity, ease: "linear" }
+                      reduce
+                        ? undefined
+                        : { duration: orbitDuration, repeat: Infinity, ease: "linear" }
                     }
-                    whileHover={reduce ? undefined : { scale: 1.06 }}
                   >
-                    {label}
-                  </motion.span>
+                    <div
+                      className="orbit-chip flex h-11 w-11 flex-col items-center justify-center gap-0.5 rounded-full border border-[var(--divider)] bg-white/95 text-[var(--brand-blue)] shadow-[0_8px_22px_rgba(36,32,33,0.1)] backdrop-blur sm:h-[4.35rem] sm:w-[4.35rem] sm:rounded-[1.25rem] md:h-[4.6rem] md:w-[4.6rem]"
+                      title={service.label}
+                    >
+                      <span className="text-[var(--brand-blue)]">{service.icon}</span>
+                      <span className="hidden text-[0.58rem] font-semibold tracking-wide text-[var(--text)] sm:block">
+                        {service.short}
+                      </span>
+                    </div>
+                  </motion.div>
                 );
               })}
             </motion.div>
+
             <motion.div
               className="absolute inset-[34%] flex items-center justify-center rounded-full border border-[color-mix(in_srgb,var(--brand-cyan)_45%,transparent)] bg-[radial-gradient(circle_at_30%_30%,color-mix(in_srgb,#18A8E4_28%,#ffffff),#ffffff_72%)] shadow-[0_0_50px_color-mix(in_srgb,#1E7EC3_22%,transparent)]"
               animate={reduce ? undefined : { scale: [1, 1.03, 1] }}
-              transition={reduce ? undefined : { duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+              transition={
+                reduce ? undefined : { duration: 5.5, repeat: Infinity, ease: "easeInOut" }
+              }
             >
-              <div className="px-3 text-center sm:px-4">
-                <p className="font-[family-name:var(--font-sora)] text-sm font-semibold text-[var(--brand-charcoal)] md:text-base">
+              <div className="px-2 text-center sm:px-4">
+                <p className="font-[family-name:var(--font-sora)] text-[0.7rem] font-semibold text-[var(--brand-charcoal)] sm:text-sm md:text-base">
                   Product Studio
                 </p>
-                <p className="mt-1 text-[0.7rem] text-[var(--muted)] md:text-xs">
+                <p className="mt-0.5 text-[0.58rem] text-[var(--muted)] sm:mt-1 sm:text-[0.7rem] md:text-xs">
                   Strategy · Design · Engineering
                 </p>
               </div>
@@ -158,7 +269,7 @@ export function Hero() {
 
       <div className="container mt-7 border-t border-[var(--divider)] pt-4 sm:mt-10 sm:pt-5">
         <ul className="flex gap-x-3 gap-y-2 overflow-x-auto pb-1 text-[0.7rem] text-[var(--muted)] [-ms-overflow-style:none] [scrollbar-width:none] sm:flex-wrap sm:gap-x-4 sm:text-xs md:text-sm [&::-webkit-scrollbar]:hidden">
-          {services.map((item) => (
+          {proofStrip.map((item) => (
             <li key={item} className="flex shrink-0 items-center gap-2 whitespace-nowrap">
               <span className="h-1 w-1 rounded-full bg-[var(--brand-cyan)]" aria-hidden />
               {item}

@@ -379,6 +379,16 @@ img {
   width: 100%;
 }
 
+.orbit-chip {
+  transition: border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
+}
+
+.orbit-chip:hover {
+  border-color: color-mix(in srgb, var(--brand-cyan) 55%, var(--divider));
+  box-shadow: 0 10px 26px rgba(30, 126, 195, 0.16);
+  transform: scale(1.04);
+}
+
 .logo-mobile {
   display: block;
 }

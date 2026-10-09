@@ -30,34 +30,36 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-[var(--divider)] pb-10 pt-14">
-      <div className="container grid gap-10 md:grid-cols-[1.2fr_1fr_1fr_1fr]">
+    <footer className="site-footer border-t border-[var(--divider)] pt-10 md:pt-14">
+      <div className="container grid gap-8 md:grid-cols-[1.2fr_1fr_1fr_1fr] md:gap-10">
         <div>
           <Logo variant="lockup" size="footer" />
-          <p className="mt-4 max-w-sm text-sm text-[var(--muted)]">
+          <p className="mt-3 max-w-sm text-sm text-[var(--muted)] md:mt-4">
             Digital products, SaaS platforms and growth experiences engineered for ambitious
             businesses.
           </p>
         </div>
-        {columns.map((col) => (
-          <div key={col.title}>
-            <p className="text-xs uppercase tracking-[0.12em] text-[var(--muted)]">{col.title}</p>
-            <ul className="mt-4 space-y-2">
-              {col.links.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="text-sm text-[var(--text)] transition-colors hover:text-[var(--brand-cyan)]"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:contents">
+          {columns.map((col) => (
+            <div key={col.title} className={col.title === "Contact" ? "col-span-2 sm:col-span-1" : undefined}>
+              <p className="text-xs uppercase tracking-[0.12em] text-[var(--muted)]">{col.title}</p>
+              <ul className="mt-3 space-y-2 md:mt-4">
+                {col.links.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      className="break-words text-sm text-[var(--text)] transition-colors hover:text-[var(--brand-cyan)]"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
-      <div className="container mt-10 flex flex-col gap-2 border-t border-[var(--divider)] pt-6 text-xs text-[var(--muted)] md:flex-row md:items-center md:justify-between">
+      <div className="container mt-8 flex flex-col gap-1 border-t border-[var(--divider)] pt-5 text-xs text-[var(--muted)] md:mt-10 md:flex-row md:items-center md:justify-between md:gap-2 md:pt-6">
         <p>© 2026 Balkrishna Infotech. All rights reserved.</p>
         <p>Privacy · Terms · balkrishnainfotech.com</p>
       </div>

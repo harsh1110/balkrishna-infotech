@@ -75,8 +75,8 @@ const websiteJsonLd = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${inter.variable} ${sora.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-[var(--bg)] text-[var(--text)]">
+    <html lang="en" className={`${inter.variable} ${sora.variable} antialiased`}>
+      <body className="bg-[var(--bg)] text-[var(--text)]">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

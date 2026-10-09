@@ -114,7 +114,7 @@ export function Insights() {
         </Reveal>
 
         <div
-          className="insights-stage relative mx-auto max-w-5xl"
+          className="insights-stage relative mx-auto max-w-5xl overflow-x-clip"
           aria-roledescription="carousel"
           aria-label="Insights carousel"
         >
@@ -173,7 +173,7 @@ export function Insights() {
           ) : (
             <>
               <div className="pointer-events-none absolute inset-x-[8%] top-[18%] -z-10 h-[55%] rounded-full bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,#18A8E4_22%,transparent),transparent_70%)] blur-2xl" />
-              <div className="relative h-[400px] overflow-hidden">
+              <div className="relative h-[380px] overflow-hidden md:h-[400px]">
                 {posts.map((item, i) => {
                   const offset = offsetOf(i, active, count);
                   const isActive = offset === 0;

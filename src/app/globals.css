@@ -36,6 +36,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -62,12 +63,14 @@ html {
 
 body {
   margin: 0;
+  min-height: 100%;
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-inter), system-ui, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 ::selection {
@@ -429,4 +432,23 @@ img {
   .logo-desktop {
     display: block;
   }
+}
+
+
+.site-footer {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0;
+  padding-bottom: max(1.25rem, env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 768px) {
+  .site-footer {
+    padding-bottom: 2.5rem;
+  }
+}
+
+.page-shell {
+  overflow-x: clip;
+  min-height: 0;
 }

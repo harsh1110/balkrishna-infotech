@@ -1,4 +1,4 @@
-:HL["/balkrishna-infotech/_next/static/chunks/0fuvdzhlwci_u.css","style"]
+:HL["/balkrishna-infotech/_next/static/chunks/0c9q2nuu8lds-.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
-0:{"b":"6b5AyHuwoLLEzMDp-7Eg1","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"g6z0A9q32GF1JHYL65moM","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

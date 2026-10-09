@@ -51,11 +51,11 @@ export function Process() {
 
           <ol className="relative">
             <div className="hidden lg:absolute lg:inset-x-0 lg:top-5 lg:block lg:h-px lg:bg-[var(--divider)]" aria-hidden />
-            <div className="flex gap-3 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] sm:grid sm:grid-cols-3 sm:overflow-visible sm:pb-0 lg:grid-cols-6 sm:gap-3 [&::-webkit-scrollbar]:hidden">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 lg:grid-cols-6">
               {steps.map((step, i) => {
                 const selected = i === active;
                 return (
-                  <li key={step.n} className="relative min-w-[7.25rem] shrink-0 sm:min-w-0">
+                  <li key={step.n} className="relative min-w-0">
                     <button
                       type="button"
                       className="group w-full text-left"

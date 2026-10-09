@@ -48,22 +48,22 @@ export function Products() {
         </Reveal>
 
         <div className="mt-8 overflow-hidden rounded-[1.5rem] border border-[var(--divider)] bg-white/75 lg:mt-12">
-          <div className="flex border-b border-[var(--divider)] overflow-x-auto">
+          <div className="grid grid-cols-3 border-b border-[var(--divider)]">
             {products.map((item, i) => (
               <button
                 key={item.name}
                 type="button"
-                className={`min-w-[9.5rem] flex-1 px-4 py-4 text-left transition sm:px-6 ${
+                className={`min-w-0 px-2 py-3 text-left transition sm:px-6 sm:py-4 ${
                   i === active
                     ? "bg-[color-mix(in_srgb,#18A8E4_10%,white)] text-[var(--text)]"
                     : "text-[var(--muted)] hover:bg-white"
                 }`}
                 onClick={() => setActive(i)}
               >
-                <span className="block text-xs uppercase tracking-[0.12em] text-[var(--brand-blue)]">
+                <span className="block truncate text-[0.65rem] uppercase tracking-[0.12em] text-[var(--brand-blue)] sm:text-xs">
                   {item.tag}
                 </span>
-                <span className="mt-1 block font-[family-name:var(--font-sora)] text-lg font-semibold">
+                <span className="mt-1 block truncate font-[family-name:var(--font-sora)] text-sm font-semibold sm:text-lg">
                   {item.name}
                 </span>
               </button>

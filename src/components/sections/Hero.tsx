@@ -269,9 +269,9 @@ export function Hero() {
       </div>
 
       <div className="container mt-7 border-t border-[var(--divider)] pt-4 sm:mt-10 sm:pt-5">
-        <ul className="flex gap-x-3 gap-y-2 overflow-x-auto pb-1 text-[0.7rem] text-[var(--muted)] [-ms-overflow-style:none] [scrollbar-width:none] sm:flex-wrap sm:gap-x-4 sm:text-xs md:text-sm [&::-webkit-scrollbar]:hidden">
+        <ul className="flex flex-wrap gap-x-3 gap-y-2 text-[0.7rem] text-[var(--muted)] sm:gap-x-4 sm:text-xs md:text-sm">
           {proofStrip.map((item) => (
-            <li key={item} className="flex shrink-0 items-center gap-2 whitespace-nowrap">
+            <li key={item} className="flex items-center gap-2">
               <span className="h-1 w-1 rounded-full bg-[var(--brand-cyan)]" aria-hidden />
               {item}
             </li>

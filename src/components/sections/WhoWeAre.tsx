@@ -71,12 +71,12 @@ export function WhoWeAre() {
           </Reveal>
         </div>
 
-        <div className="mt-10 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          <dl className="flex min-w-max gap-0 border-y border-[var(--divider)] md:min-w-0 md:grid md:grid-cols-4">
+        <div className="mt-10">
+          <dl className="grid grid-cols-2 gap-0 border-y border-[var(--divider)] md:grid-cols-4">
             {metrics.map((metric, i) => (
               <motion.div
                 key={metric.label}
-                className="min-w-[200px] border-r border-[var(--divider)] px-5 py-6 last:border-r-0 md:min-w-0 md:px-6"
+                className="border-[var(--divider)] px-4 py-5 odd:border-r even:border-r-0 md:border-r md:px-6 md:py-6 md:last:border-r-0 [&:nth-child(-n+2)]:border-b md:[&:nth-child(-n+2)]:border-b-0"
                 initial={{ opacity: 1, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

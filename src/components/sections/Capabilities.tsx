@@ -59,7 +59,7 @@ export function Capabilities() {
 
         <div className="mt-8 grid gap-6 lg:mt-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10">
           <div
-            className="flex gap-2 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] lg:flex-col lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden"
+            className="grid grid-cols-2 gap-2 sm:grid-cols-2 lg:flex lg:flex-col lg:gap-2"
             role="tablist"
             aria-label="Services"
           >
@@ -71,7 +71,7 @@ export function Capabilities() {
                   type="button"
                   role="tab"
                   aria-selected={selected}
-                  className={`shrink-0 rounded-full border px-4 py-2.5 text-left text-sm font-medium transition lg:rounded-xl lg:px-4 lg:py-3 ${
+                  className={`rounded-xl border px-3 py-2.5 text-left text-sm font-medium transition sm:px-4 lg:rounded-xl lg:px-4 lg:py-3 ${
                     selected
                       ? "border-transparent bg-[linear-gradient(135deg,#1E7EC3,#18A8E4)] text-white shadow-[0_10px_24px_rgba(30,126,195,0.25)]"
                       : "border-[var(--divider)] bg-white/70 text-[var(--muted)] hover:border-[var(--brand-blue)] hover:text-[var(--text)]"
